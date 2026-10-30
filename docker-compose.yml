@@ -1,0 +1,14 @@
+services:
+  cd-wishlist:
+    build: .
+    image: cd-wishlist:latest
+    container_name: cd-wishlist
+    restart: unless-stopped
+    ports:
+      # Alleen op het Tailscale-IP van je Unraid-server (tailscale ip -4)
+      - "${TS_IP:?zet TS_IP in .env}:8080:8080"
+    volumes:
+      - /mnt/user/appdata/cd-wishlist:/data
+    environment:
+      - TZ=Europe/Amsterdam
+      # - COVERS=0   # hoezen ophalen via MusicBrainz uitzetten

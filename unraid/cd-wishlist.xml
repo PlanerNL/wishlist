@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>cd-wishlist</Name>
+  <Repository>ghcr.io/planernl/wishlist:latest</Repository>
+  <Registry>https://github.com/PlanerNL/wishlist/pkgs/container/wishlist</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/PlanerNL/wishlist/issues</Support>
+  <Project>https://github.com/PlanerNL/wishlist</Project>
+  <Overview>CD Wishlist: houd je CD-collectie en wishlist bij, per band met voortgang. Excel import/export, hoezen via MusicBrainz. Alleen bereikbaar via Tailscale: pas in Extra Parameters het IP aan naar je eigen Tailscale-IP (tailscale ip -4).</Overview>
+  <Category>MediaApp:Music Tools:</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/PlanerNL/wishlist/main/unraid/cd-wishlist.xml</TemplateURL>
+  <Icon/>
+  <ExtraParams>-p 100.x.y.z:8080:8080</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>Tailscale moet op de Unraid-server draaien. Vervang 100.x.y.z in Extra Parameters door je Tailscale-IP.</Requires>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/cd-wishlist" Mode="rw" Description="Database en hoezen" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/cd-wishlist</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Amsterdam" Mode="" Description="Tijdzone" Type="Variable" Display="advanced" Required="false" Mask="false">Europe/Amsterdam</Config>
+  <Config Name="Hoezen ophalen" Target="COVERS" Default="1" Mode="" Description="1 = hoezen ophalen via MusicBrainz, 0 = uit" Type="Variable" Display="advanced" Required="false" Mask="false">1</Config>
+</Container>
