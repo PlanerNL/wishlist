@@ -137,13 +137,16 @@ function renderDetail() {
         <label class="field">Uitgave<input type="text" name="uitgave" value="${esc(a.uitgave)}" placeholder="bijv. digipak"></label>
       </div>
       <label class="field">Notitie<textarea name="notitie">${esc(a.notitie)}</textarea></label>
-      <p class="msg" id="formMsg" role="status"></p>
-      <div class="row-between">
-        ${a.id ? `<button type="button" class="btn danger" id="btnDelete">Verwijderen</button>` : `<button type="button" class="btn light" id="btnCancel">Annuleren</button>`}
-        <button type="submit" class="btn primary">Opslaan</button>
-      </div>
       ${a.id ? `<button type="button" class="btn light" id="btnRecover" style="height:36px;font-size:14px;align-self:flex-start">Hoes opnieuw zoeken</button>` : ""}
+      <div class="formactions">
+        <p class="msg" id="formMsg" role="status"></p>
+        <div class="row-between">
+          ${a.id ? `<button type="button" class="btn danger" id="btnDelete">Verwijderen</button>` : `<button type="button" class="btn light" id="btnCancel">Annuleren</button>`}
+          <button type="submit" class="btn primary">Opslaan</button>
+        </div>
+      </div>
     </form>`;
+  el.scrollTop = 0;
 }
 
 function render() {
