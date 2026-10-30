@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     ports:
       # Alleen op het Tailscale-IP van je Unraid-server (tailscale ip -4)
-      - "${TS_IP:?zet TS_IP in .env}:8080:8080"
+      - "${TS_IP:?zet TS_IP in .env}:8095:8080"
     volumes:
       - /mnt/user/appdata/cd-wishlist:/data
     environment:

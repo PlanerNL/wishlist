@@ -46,6 +46,15 @@ body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 "IBM
 .bar > i { display: block; height: 100%; background: var(--accent); }
 
 .content { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.tabs { display: inline-flex; align-self: flex-start; gap: 4px; padding: 4px; background: var(--chip); border-radius: 10px; flex-wrap: wrap; }
+.tabs button { height: 40px; padding: 0 16px; border: 0; border-radius: 7px; background: transparent; color: var(--ink); font: inherit; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.tabs button.on { background: var(--panel); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.tabs .count { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; color: var(--muted); }
+.coveractions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.coveractions .btn { height: 36px; font-size: 14px; padding: 0 12px; }
+.filebtn { position: relative; overflow: hidden; }
+.filebtn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.filebtn:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
 .titlebar { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; }
 h1 { margin: 0; font-size: 28px; letter-spacing: -.02em; }
 .sort { display: flex; align-items: center; gap: 8px; color: var(--muted); }

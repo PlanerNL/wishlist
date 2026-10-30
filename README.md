@@ -1,10 +1,11 @@
-# CD Wishlist
+# Hebbes
 
-Kleine self-hosted webapp om je CD-collectie en wishlist bij te houden: per band zie je wat je hebt en wat nog ontbreekt. Draait als Docker-container op Unraid en is alleen bereikbaar via Tailscale.
+Self-hosted wishlist voor je CD's en games (console en PC): per band of platform zie je wat je hebt en wat nog ontbreekt. Draait als Docker-container op Unraid en is alleen bereikbaar via Tailscale.
 
 - Backend: Python / FastAPI, data in SQLite (`/mnt/user/appdata/cd-wishlist/wishlist.db`)
 - Excel importeren (samenvoegen of vervangen) en exporteren
-- Hoezen worden automatisch opgehaald via MusicBrainz / Cover Art Archive en lokaal bewaard
+- Hoezen automatisch via MusicBrainz / Cover Art Archive (CD's) en Wikipedia (games), of upload je eigen afbeelding
+- Bestaande database uit de eerste (CD-only) versie wordt bij de eerste start automatisch omgezet
 - Statussen: Gezocht → Gespot → Besteld → In bezit
 
 ## Installatie via GitHub (aanbevolen)
@@ -43,17 +44,19 @@ Updaten: push naar GitHub, wacht tot de Action klaar is, dan in de Docker-tab *C
 4. **Container starten**, alleen gebonden aan het Tailscale-IP:
    ```
    docker run -d --name cd-wishlist --restart unless-stopped \
-     -p 100.101.102.103:8080:8080 \
+     -p 100.101.102.103:8095:8080 \
      -v /mnt/user/appdata/cd-wishlist:/data \
      -e TZ=Europe/Amsterdam \
      cd-wishlist:latest
    ```
    (Of met de Compose Manager-plugin: zet `TS_IP=100.101.102.103` in een `.env` naast `docker-compose.yml` en `docker compose up -d --build`.)
 
-5. **Openen** op een apparaat in je tailnet: `http://100.101.102.103:8080`
-   (of `http://<unraid-naam>:8080` als MagicDNS aan staat).
+5. **Openen** op een apparaat in je tailnet: `http://100.101.102.103:8095`
+   (of `http://<unraid-naam>:8095` als MagicDNS aan staat).
 
-6. **Excel importeren:** klik op *Importeer* en kies `Wishlist_CDs.xlsx`.
+6. **Excel importeren:** klik op *Importeer*. Per tabblad wordt gekeken naar de kolommen:
+   - CD's: `Band` + `Album` (optioneel `Year`/`Jaar`, `Prijs`, statuskolom)
+   - Games: `Platform` + `Titel` (optioneel `Jaar`, `Prijs`, `Uitgave`, statuskolom)
    - `Check` in de eerste kolom → **In bezit**
    - een andere waarde (bijv. `Vinted`) → **Gespot**, met die waarde als bron
    - leeg → **Gezocht**
